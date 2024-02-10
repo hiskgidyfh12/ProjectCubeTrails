@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour
     private EnemyMove[] _enemyMove;
     [SerializeField]
     private PlayerMove _playerMove;
-    public bool TurnPlayer;
+    public bool TurnPlayer = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour
     }
     public void EndOfTurnEnemy()
     {
-
+        TurnPlayer = true; 
     }
     public void EndOfTurnPlayer()
     {

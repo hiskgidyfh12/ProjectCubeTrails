@@ -11,13 +11,19 @@ public class ToolsMove : MonoBehaviour
     private Vector3 _target;
     public bool End { get; set; }
 
-    public void SetTarget(Vector3 direction)
+    public void SetTarget(Vector3 direction, bool force = false)
     {
-        if (!IsBlocked)
+        if (!IsBlocked || force)
         {
             IsBlocked = true;
-            _target = transform.position + direction;
-           
+            if (!force)
+            {
+                _target = transform.position + direction;
+            }
+            else
+            {
+                _target = direction;
+            }
 
             _target = new Vector3(Mathf.RoundToInt(_target.x), Mathf.RoundToInt((int)_target.y), Mathf.RoundToInt((int)_target.z));
         }

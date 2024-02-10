@@ -6,6 +6,8 @@ public class Teleport : MonoBehaviour
 {
     [SerializeField]
     private GameObject _target;
+    [SerializeField]
+    private Vector3 newPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +23,8 @@ public class Teleport : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var mv =  other.GetComponent<MoveControl>();
-        mv.moving = false;
+        var mv =  other.GetComponent<ToolsMove>();
+        mv.SetTarget(newPosition, true);
         other.transform.position = _target.transform.position;
     }
 }

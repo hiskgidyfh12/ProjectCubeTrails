@@ -7,11 +7,13 @@ public class EnemyMove : MonoBehaviour
     [SerializeField]
     private ToolsMove _tools;
     private PlayerMove _playerMove;
+    private GameController GameController;
     // Start is called before the first frame update
     void Start()
     {
         _tools = GetComponent<ToolsMove>();
         _playerMove = FindObjectOfType<PlayerMove>();
+        GameController = FindObjectOfType<GameController>();
     }
     public void SetTarget()
     {
@@ -34,7 +36,7 @@ public class EnemyMove : MonoBehaviour
         }
         else
         {
-            var znak = x > 0 ? 1 : -1;
+            var znak = z > 0 ? 1 : -1;
 
             _tools.SetTarget(new Vector3(0, 0, znak));
         }
@@ -44,5 +46,10 @@ public class EnemyMove : MonoBehaviour
     void Update()
     {
         _tools.Move();
+        if(_tools.End)
+        {
+            _tools.End = false;
+            GameController.EndOfTurnEnemy();
+        }
     }
 }

@@ -8,6 +8,7 @@ public class PlayerMove : MonoBehaviour
     private ToolsMove _tools;
     [SerializeField]
     private GameController _gameController;
+    public bool moving;
 
 
     // Start is called before the first frame update
@@ -21,6 +22,9 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         if (!_gameController.TurnPlayer) return;
+
+
+        Debug.Log("my turn");
         if(Input.GetKeyDown(KeyCode.W)) 
         {
             _tools.SetTarget(Vector3.forward);
