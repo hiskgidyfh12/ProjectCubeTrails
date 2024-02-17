@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyAttack : MonoBehaviour
 {
@@ -17,6 +18,14 @@ public class EnemyAttack : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Вы атакованы");
+        if (other.gameObject.tag == "enemy")
+        {
+            if(PlayerPrefs.HasKey("Hearts"))
+            {
+
+            }
+            Debug.Log("Вы атакованы");
+            SceneManager.LoadScene("Game");
+        }
     }
 }
