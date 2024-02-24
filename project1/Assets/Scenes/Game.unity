@@ -9265,6 +9265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2223f10353cee4d9b8e407e2ca6630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Hearts: 0
 --- !u!1 &606567350
 GameObject:
   m_ObjectHideFlags: 0
@@ -25252,6 +25253,7 @@ GameObject:
   - component: {fileID: 1843171062}
   - component: {fileID: 1843171064}
   - component: {fileID: 1843171063}
+  - component: {fileID: 1843171065}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -25319,6 +25321,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1843171061}
   m_CullTransparentMesh: 1
+--- !u!114 &1843171065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843171061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72c919d10cdf75b4d835e52d44b0ef82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Heart1: {fileID: 504858814}
+  Heart2: {fileID: 501080610}
+  Heart3: {fileID: 794120201}
+  enemyAttack: {fileID: 605171794}
 --- !u!1 &1855472966
 GameObject:
   m_ObjectHideFlags: 0

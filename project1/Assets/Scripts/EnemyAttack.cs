@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class EnemyAttack : MonoBehaviour
 {
+    public int Hearts;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        Hearts = PlayerPrefs.GetInt("Hearts", 3);
     }
 
     // Update is called once per frame
@@ -16,16 +18,29 @@ public class EnemyAttack : MonoBehaviour
     {
         
     }
+    public bool Validate(int hearts)
+    {
+        return hearts <= Hearts;
+    }
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "enemy")
         {
-            if(PlayerPrefs.HasKey("Hearts"))
-            {
+            Hearts = PlayerPrefs.GetInt("Hearts", 3);
+            Hearts = Hearts - 1;
+            PlayerPrefs.SetInt("Hearts", Hearts);
 
+            Debug.Log($"Вы атакованы {Hearts}");
+
+            if (Hearts <= 0)
+            {
+                PlayerPrefs.SetInt("Hearts", 3);
+                SceneManager.LoadScene("StartMenu");
             }
-            Debug.Log("Вы атакованы");
-            SceneManager.LoadScene("Game");
+            else
+            {
+                SceneManager.LoadScene("Game");
+            }
         }
     }
 }
