@@ -24,7 +24,7 @@ public class PlayerMove : MonoBehaviour
         if (!_gameController.TurnPlayer) return;
 
 
-
+        //
         if(Input.GetKeyDown(KeyCode.W)) 
         {
             _tools.SetTarget(Vector3.forward);
@@ -42,6 +42,7 @@ public class PlayerMove : MonoBehaviour
             _tools.SetTarget(Vector3.back);
         }
         _tools.Move();
+        //
 
         if (_tools.End)
         {

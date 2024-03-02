@@ -11,8 +11,26 @@ public class ToolsMove : MonoBehaviour
     private Vector3 _target;
     public bool End { get; set; }
 
-    public void SetTarget(Vector3 direction, bool force = false)
+    public bool Chekwall(Vector3 direction)
     {
+        if(Physics.Raycast(transform.position, direction, 1))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool SetTarget(Vector3 direction, bool force = false)
+    {
+        Debug.Log(Chekwall(direction));
+        if(Chekwall(direction))
+        {
+            return false;
+        }
+
         if (!IsBlocked || force)
         {
             IsBlocked = true;
@@ -27,6 +45,8 @@ public class ToolsMove : MonoBehaviour
 
             _target = new Vector3(Mathf.RoundToInt(_target.x), Mathf.RoundToInt((int)_target.y), Mathf.RoundToInt((int)_target.z));
         }
+
+        return true;
     }
     public bool Move()
     {
@@ -48,4 +68,5 @@ public class ToolsMove : MonoBehaviour
         }
         return true;
     }
+    
 }
