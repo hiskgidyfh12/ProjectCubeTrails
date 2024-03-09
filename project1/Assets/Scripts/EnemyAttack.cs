@@ -39,7 +39,7 @@ public class EnemyAttack : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene("Game");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
     }

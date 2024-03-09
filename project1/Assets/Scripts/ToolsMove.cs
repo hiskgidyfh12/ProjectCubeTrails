@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+
 using UnityEngine;
 
 public class ToolsMove : MonoBehaviour
@@ -37,10 +37,6 @@ public class ToolsMove : MonoBehaviour
             if (!force)
             {
                 _target = transform.position + direction;
-            }
-            else
-            {
-                _target = direction;
             }
 
             _target = new Vector3(Mathf.RoundToInt(_target.x), Mathf.RoundToInt((int)_target.y), Mathf.RoundToInt((int)_target.z));
