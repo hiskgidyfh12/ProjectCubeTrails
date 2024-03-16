@@ -24,7 +24,7 @@ public class PlayerMove : MonoBehaviour
         if (!_gameController.TurnPlayer) return;
 
 
-
+        Debug.Log("my turn");
         if(Input.GetKeyDown(KeyCode.W)) 
         {
             _tools.SetTarget(Vector3.forward);
