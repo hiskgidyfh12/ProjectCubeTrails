@@ -9,13 +9,13 @@ public class ToolsMove : MonoBehaviour
     private bool IsBlocked = false;
     [SerializeField]
     private Vector3 _target;
-    public bool End { get; set; }
+    public bool End;
 
     public bool Chekwall(Vector3 direction)
     {
-        if(Physics.Raycast(transform.position, direction, 1))
+        if (Physics.Raycast(transform.position, direction, out RaycastHit hitinfo, 1))
         {
-            return true;
+            return hitinfo.collider.tag == "Wall";
         }
         else
         {
@@ -28,6 +28,7 @@ public class ToolsMove : MonoBehaviour
         Debug.Log(Chekwall(direction));
         if(Chekwall(direction))
         {
+            End = true;
             return false;
         }
 
@@ -38,11 +39,10 @@ public class ToolsMove : MonoBehaviour
             {
                 _target = transform.position + direction;
             }
-           // else
-            //{
-            //    Debug.Log("Работает");
-            //    _target = direction;
-            //}
+            else
+            {
+                _target = direction;
+            }
 
             _target = new Vector3(Mathf.RoundToInt(_target.x), Mathf.RoundToInt((int)_target.y), Mathf.RoundToInt((int)_target.z));
         }
@@ -51,6 +51,7 @@ public class ToolsMove : MonoBehaviour
     }
 
     public Vector3 OldCoords;
+    public Vector3 Delta;
 
     public bool Move()
     {
@@ -61,12 +62,13 @@ public class ToolsMove : MonoBehaviour
             OldCoords = transform.position;
 
             transform.position += norma * Time.deltaTime * 2;
-            if((transform.position - OldCoords).magnitude  < 0.000000001f)
+            Delta = transform.position - OldCoords;
+            if ((transform.position - OldCoords).magnitude  < 0.0005f)
             {
                 IsBlocked = false;
                 End = true;
             }
-            if(Vec.magnitude <= 0.0125f) 
+            if (Vec.magnitude <= 0.0125f)
             {
                 transform.position = new Vector3(_target.x, transform.position.y, _target.z);
                 IsBlocked = false;
