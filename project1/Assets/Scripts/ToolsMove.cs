@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class ToolsMove : MonoBehaviour
@@ -38,21 +38,34 @@ public class ToolsMove : MonoBehaviour
             {
                 _target = transform.position + direction;
             }
+           // else
+            //{
+            //    Debug.Log("Работает");
+            //    _target = direction;
+            //}
 
             _target = new Vector3(Mathf.RoundToInt(_target.x), Mathf.RoundToInt((int)_target.y), Mathf.RoundToInt((int)_target.z));
         }
 
         return true;
     }
+
+    public Vector3 OldCoords;
+
     public bool Move()
     {
         if (IsBlocked)
         {
             var Vec = _target - transform.position;
             var norma = Vec.normalized;
+            OldCoords = transform.position;
 
             transform.position += norma * Time.deltaTime * 2;
-
+            if((transform.position - OldCoords).magnitude  < 0.000000001f)
+            {
+                IsBlocked = false;
+                End = true;
+            }
             if(Vec.magnitude <= 0.0125f) 
             {
                 transform.position = new Vector3(_target.x, transform.position.y, _target.z);
