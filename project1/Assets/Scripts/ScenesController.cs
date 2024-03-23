@@ -9,12 +9,4 @@ public class ScenesController : MonoBehaviour
     {
         SceneManager.LoadScene("Game");
     }
-    public void NextLevel()
-    {
-        var index = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(index + 1);
-    }
-
-
-
 }
