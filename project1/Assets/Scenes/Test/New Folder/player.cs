@@ -9,7 +9,7 @@ using UnityEngine;
 public class player : MonoBehaviour
 {
     public Rigidbody rb;
-    public float Speed = 0.5f;
+    public float Speed = 0.01f;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,27 +21,27 @@ public class player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.D))
         {
-            rb.AddForce(Vector3.right*Speed, ForceMode.Impulse);
-
+            // rb.AddForce(Vector3.right * Speed, ForceMode.Impulse);
+            transform.position += Vector3.right * Speed * Time.deltaTime;
 
         }
         if (Input.GetKey(KeyCode.A))
         {
-            rb.AddForce(Vector3.left*Speed, ForceMode.Impulse);
+            transform.position += Vector3.left * Speed * Time.deltaTime;
 
 
         }
 
         if (Input.GetKey(KeyCode.W))
         {
-            rb.AddForce(Vector3.forward * Speed, ForceMode.Impulse);
+            transform.position += Vector3.forward * Speed * Time.deltaTime;
 
 
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            rb.AddForce(Vector3.back * Speed, ForceMode.Impulse);
+            transform.position += Vector3.back * Speed * Time.deltaTime;
 
 
         }
