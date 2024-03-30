@@ -6,11 +6,12 @@ using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCou
 public class conveer : MonoBehaviour
 {
     public float Speed = 3f;
-    private void OnTriggerEnter(Collider other)
+    public Vector3 dir;
+    public void OnTriggerStay(Collider other)
     {
-        if (other)
+        if (other.gameObject)
         {
-            transform.position += Vector3.back * Speed * Time.deltaTime;
+            other.transform.position += dir * Speed * Time.deltaTime;
         }
     }
 
@@ -19,4 +20,19 @@ public class conveer : MonoBehaviour
     {
         
     }
+
+#if UNITY_EDITOR
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, transform.position + dir * Speed);
+
+        Gizmos.DrawCube(transform.position + dir * Speed, Vector3.one / 5);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, transform.position + dir.normalized * 5);
+    }
+
+#endif
 }
