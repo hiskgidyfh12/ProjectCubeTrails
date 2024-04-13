@@ -8,7 +8,7 @@ public class vrag : MonoBehaviour
     public float sp = 1f;
     void Start()
     {
-        
+        Target = FindObjectOfType<player>().transform;
     }
 
     void Update()
