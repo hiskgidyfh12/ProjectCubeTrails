@@ -23,19 +23,21 @@ public class camera : MonoBehaviour
 
     void LateUpdate()
     {
-        float input = Input.GetAxis("Mouse ScrollWheel");
-        if (input != 0) //если крутится колесико мыши
-        {
+        
+          float input = Input.GetAxis("Mouse ScrollWheel");
+          if (input != 0) //если крутится колесико мыши
+          {
             Camera.main.fieldOfView += input * zoomSpeed; //зум
 
             //сперва хотел менять смещение, что то криво вышло
             //_offset.x += 10 * input;
             //_offset.y += 10 * input;
+          }
+        if (Input.GetMouseButton(1)) //правая кнопка мыши
+        {
+            _rotY -= Input.GetAxis("Mouse X") * rotSpeed; //поворот камеры вокруг объекта
+            _rotX += Input.GetAxis("Mouse Y") * rotSpeed;
         }
-
-        _rotY -= Input.GetAxis("Mouse X") * rotSpeed; //поворот камеры вокруг объекта
-        _rotX += Input.GetAxis("Mouse Y") * rotSpeed;
-
         if (_rotY != 0 || _rotX != 0)
         {
             Quaternion rotation = Quaternion.Euler(_rotX, _rotY, 0); //задает вращение камеры
