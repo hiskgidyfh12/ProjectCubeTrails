@@ -19,7 +19,7 @@ public class spasobnosti : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.T))
         {
-            Collider enemy 
+            
 
         }
     }

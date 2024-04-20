@@ -12,38 +12,39 @@ using UnityEngine.XR;
 
 public class NewBehaviourScript : MonoBehaviour
 {
+    public GameObject enemyPrefeb;
+    public float generatorTimer = 1.75f;
 
-    public GameObject thing;
+    void Start()
+    {
 
-    public Vector3 target;
-    public int fish = 3;
-
-    private int enemy => FindObjectsOfType<vrag>().Length;
-
-
-
+    }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+
+    }
+
+    void CreateEnemy()
+    {
+        Instantiate(enemyPrefeb, transform.position, Quaternion.identity);
+    }
+
+    public void StartGenerator()
+    {
+        InvokeRepeating("CreateEnemy", 0f, generatorTimer);
+    }
+
+    public void CancelGenerator(bool clean = false)
+    {
+        CancelInvoke("CreateEnemy");
+        if (clean)
         {
-            if (enemy < fish)
+            Object[] allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject enemy in allEnemies)
             {
-                GameObject copiedThing = Instantiate(thing, target, Quaternion.identity);
+                Destroy(enemy);
             }
-        }
-
-
-
-        // Start is called before the first frame update
-        void Start()
-        {
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
     }
 }
