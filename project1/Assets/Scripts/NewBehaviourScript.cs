@@ -16,7 +16,7 @@ public class NewBehaviourScript : MonoBehaviour
     public GameObject thing;
 
     public Vector3 target;
-    public int fish = 5;
+    public int fish = 3;
 
     private int enemy => FindObjectsOfType<vrag>().Length;
 
