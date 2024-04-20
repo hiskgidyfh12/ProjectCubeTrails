@@ -10,6 +10,7 @@ public class player : MonoBehaviour
 {
     public Rigidbody rb;
     public float Speed = 0.01f;
+    private bool isJumping;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +46,17 @@ public class player : MonoBehaviour
 
 
         }
+        if (Input.GetKeyDown(KeyCode.Space) && isJumping == false)
+        {
+            rb.velocity = new Vector3(0, 10, 0);
+            isJumping = true;
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    
+    {
+        isJumping = false;
+    }
 
-    }    }    
+}        
 
