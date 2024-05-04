@@ -5,7 +5,7 @@ using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCou
 
 public class conveer : MonoBehaviour
 {
-    public float Speed = 3f;
+    public float Speed = 10f;
     public Vector3 dir;
     public void OnTriggerStay(Collider other)
     {
